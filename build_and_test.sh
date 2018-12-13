@@ -20,9 +20,6 @@ sed -i -r 's/^url\=.*$/url=jdbc:oracle:thin:@'$ORACLE':1521\/xe/g' oracleConfig.
 echo "Build fresh war for Tomcat deployment"
 mvn clean compile war:war
 
-# now create Tomcat instances
-sed -i -r 's/count\s+\=\s+[0-9]+/count = 1/g' terraform/terraformResourceTomcat.tf
-
 # create the test infrasctucture for Tomcat
 sed -i -r 's/count\s+\=\s+[0-9]+/count = 1/g' terraform/terraformResourceOracle.tf
 sed -i -r 's/count\s+\=\s+[0-9]+/count = 1/g' terraform/terraformResourceTomcat.tf
